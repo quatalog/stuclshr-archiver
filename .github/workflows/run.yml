@@ -18,7 +18,7 @@ jobs:
           STEM="https://sis.rpi.edu"
           curl -O "$STEM/stuclshr.htm"
           LIST=$(grep stuclshr.htm -e 'href="/reg' | cut -f2 -d'"' | sed "s|^|-O $STEM|")
-          cd reg
+          mkdir -p reg; cd reg
           curl -Z --parallel-immediate --parallel-max 5 $LIST
       
       - name: Commit data
