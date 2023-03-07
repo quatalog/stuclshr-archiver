@@ -24,5 +24,6 @@ jobs:
       - name: Commit data
         run: |
           git config user.name "Quatalog Updater" && git config user.email "github_actions@quatalog.com"
-          git commit -a -m "$(date -u)" || exit 0
+          git add stuclshr.htm reg
+          git commit -m "$(date -u)" || exit 0
           git push
