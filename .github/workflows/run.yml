@@ -23,10 +23,16 @@ jobs:
           LIST=$(grep stuclshr.htm -e 'href="/reg' | cut -f2 -d'"' | sed "s|^|-O $STEM|")
           mkdir -p reg; cd reg
           curl -Z --parallel-immediate --parallel-max 5 $LIST
-      
+            
       - name: Commit data
         run: |
           git config user.name "Quatalog Updater" && git config user.email "github_actions@quatalog.com"
           git add stuclshr.htm reg
           git commit -m "$(date -u)" || exit 0
           git push
+          
+      - name: Save on archive.org
+        run: |
+          STEM="https://web.archive.org/save/https://sis.rpi.edu/"
+          LIST=$(git show --name-only --pretty="" | sed "s|^|$STEM|")
+          curl $LIST
