@@ -22,7 +22,7 @@ jobs:
           curl -O "$STEM/stuclshr.htm"
           LIST=$(grep stuclshr.htm -e 'href="/reg' | cut -f2 -d'"' | sed "s|^|-O $STEM|")
           mkdir -p reg; cd reg
-          curl -Z --parallel-immediate --parallel-max 5 $LIST
+          curl -f -Z --parallel-immediate --parallel-max 5 $LIST
             
       - name: Commit data
         run: |
@@ -35,4 +35,4 @@ jobs:
         run: |
           STEM="https://web.archive.org/save/https://sis.rpi.edu/"
           LIST=$(git show --name-only --pretty="" | sed "s|^|$STEM|")
-          curl $LIST
+          curl -f $LIST
