@@ -34,5 +34,5 @@ jobs:
       - name: Save on archive.org
         run:
           STEM="https://web.archive.org/save/https://sis.rpi.edu/"
-          LIST=$(git show --name-only --pretty="" | sed "s|^|$STEM|")
-          (test $LIST && curl $LIST) || test ! $LIST
+          LIST="$(git show --name-only --pretty="" | sed "s|^|$STEM|")"
+          test $LIST && curl $LIST || test ! $LIST
