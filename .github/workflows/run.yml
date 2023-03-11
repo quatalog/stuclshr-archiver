@@ -30,9 +30,8 @@ jobs:
           git add stuclshr.htm reg
           git commit -m "$(date -u)" || exit 0
           git push
-          
-      - name: Save on archive.org
-        run: |
+          # Save on archive.org
+          # this is not a separate step because we want to short circuit if no changes
           STEM="https://web.archive.org/save/https://sis.rpi.edu/"
           LIST=$(git show --name-only --pretty="" | sed "s|^|$STEM|")
           curl $LIST
