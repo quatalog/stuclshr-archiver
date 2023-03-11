@@ -35,4 +35,6 @@ jobs:
         run:
           STEM="https://web.archive.org/save/https://sis.rpi.edu/"
           LIST=$(git show --name-only --pretty="" | sed "s|^|$STEM|")
-          curl $LIST
+          if [ $LIST ]; then
+            curl $LIST
+          fi
