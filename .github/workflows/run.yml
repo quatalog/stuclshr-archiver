@@ -28,11 +28,11 @@ jobs:
         run: |
           git config user.name "Quatalog Updater" && git config user.email "github_actions@quatalog.com"
           git add stuclshr.htm reg
-          git commit --allow-empty -m "$(date -u)"
+          git commit -m "$(date -u)" || exit 0
           git push
           
-      - name: Save on archive.org
-        run:
-          STEM="https://web.archive.org/save/https://sis.rpi.edu/"
-          LIST="$(git show --name-only --pretty="" | sed "s|^|$STEM|")"
-          test -n "$LIST" && curl "$LIST" || test -z "$LIST"
+      #- name: Save on archive.org
+      #  run:
+      #    STEM="https://web.archive.org/save/https://sis.rpi.edu/"
+      #    LIST="$(git show --name-only --pretty="" | sed "s|^|$STEM|")"
+      #    test -n "$LIST" && curl "$LIST" || test -z "$LIST"
