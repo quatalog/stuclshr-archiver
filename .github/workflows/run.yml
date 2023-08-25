@@ -22,7 +22,7 @@ jobs:
           curl -O "$STEM/stuclshr.htm"
           LIST=$(grep stuclshr.htm -e 'href="/reg' | cut -f2 -d'"' | sed "s|^|-O $STEM|")
           mkdir -p reg; cd reg
-          curl -f -Z --parallel-immediate --parallel-max 5 $LIST
+          curl -f -L -Z --parallel-immediate --parallel-max 5 $LIST || true
       
       - name: Save on archive.org
         run:
