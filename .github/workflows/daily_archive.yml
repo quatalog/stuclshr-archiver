@@ -1,0 +1,18 @@
+name: Daily archive.org even if no changes
+
+on:
+  schedule:
+  - cron: '0 1 * * *'
+  workflow_dispatch:
+
+jobs:
+  get-files:
+    name: Get class hour schedule files
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Save stuclshr outlinks on archive.org
+        run: |
+          curl -sS -X POST -H "Accept: application/json" -H "Authorization: LOW ${{ secrets.WEB_ARCHIVE_AUTH }}" -d"url=https://sis.rpi.edu/stuclshr.htm&capture_outlinks=1" 'https://web.archive.org/save' | jq
