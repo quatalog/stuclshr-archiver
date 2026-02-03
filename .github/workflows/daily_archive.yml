@@ -15,4 +15,4 @@ jobs:
     steps:
       - name: Save stuclshr outlinks on archive.org
         run: |
-          curl -sS -X POST -H "Accept: application/json" -H "Authorization: LOW ${{ secrets.WEB_ARCHIVE_AUTH }}" -d"url=https://sis.rpi.edu/stuclshr.htm&capture_outlinks=1" 'https://web.archive.org/save' | jq
+          curl -sS -X POST -H "Accept: application/json" -H "Authorization: LOW ${{ secrets.WEB_ARCHIVE_AUTH }}" -d"url=https://sis-sso.rpi.edu/reg/faclshrschd.htm&capture_outlinks=1" 'https://web.archive.org/save' | jq
