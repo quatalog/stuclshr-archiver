@@ -26,7 +26,7 @@ jobs:
       
       - name: Save on archive.org
         run: |
-          STEM="https://sis.rpi.edu/"
+          STEM="https://sis-sso.rpi.edu"
           DIFF_LIST="$(git diff --name-only)"
           test -n "$DIFF_LIST" || exit 0
           while read -r FILE; do
