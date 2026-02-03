@@ -18,8 +18,8 @@ jobs:
 
       - name: Get data
         run: |
-          STEM="https://sis.rpi.edu"
-          curl -O "$STEM/stuclshr.htm"
+          STEM="https://sis-sso.rpi.edu"
+          curl -o stuclshr.htm "$STEM/reg/faclshrschd.htm"
           LIST=$(grep stuclshr.htm -e 'href="/reg' | cut -f2 -d'"' | sed "s|^|-O $STEM|")
           mkdir -p reg; cd reg
           curl -f -L -Z --parallel-immediate --parallel-max 5 $LIST || true
